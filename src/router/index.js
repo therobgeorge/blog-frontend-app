@@ -30,41 +30,40 @@ const routes = [
     component: Test,
   },
   {
-    path: "/signup", 
-    name: "signup", 
+    path: "/signup",
+    name: "signup",
     component: Signup,
   },
   {
     path: "/login",
-    name: "login", 
+    name: "login",
     component: Login,
   },
   {
     path: "/logout",
-    name: "logout", 
-    component: Logout
-  }, 
+    name: "logout",
+    component: Logout,
+  },
   {
     path: "/posts",
     name: "posts-index",
-    component: PostsIndex
+    component: PostsIndex,
   },
   {
     path: "/posts/new",
     name: "posts-new",
-    component: PostsNew
+    component: PostsNew,
   },
   {
     path: "/posts/:id",
     name: "posts-show",
-    component: PostsShow
+    component: PostsShow,
   },
   {
     path: "/posts/:id/edit",
     name: "posts-edit",
-    component: PostsEdit
-  }
-
+    component: PostsEdit,
+  },
 ];
 
 const router = new VueRouter({
