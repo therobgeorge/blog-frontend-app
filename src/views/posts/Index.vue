@@ -1,11 +1,13 @@
 <template>
   <div class="posts-index">
-    <div v-for="post in posts" v-bind:key="post.id">
+    <input type="text" v-model="searchTerm" placeholder="Search" />
+    <div v-for="post in filterBy(posts, searchTerm, 'title')" v-bind:key="post.id">
       <router-link :to="`posts/${post.id}`">
         <h2>{{ post.title }}</h2>
       </router-link>
       <img :src="post.image" alt="" />
       <p>{{ post.body }}</p>
+      <p>Created: {{ relativeDate(post.created_at) }}</p>
     </div>
   </div>
 </template>
@@ -14,10 +16,14 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
+import Vue2Filters from "vue2-filters";
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
       posts: [],
+      searchTerm: "",
     };
   },
   created: function () {
@@ -25,6 +31,11 @@ export default {
       console.log("posts array", response.data);
       this.posts = response.data;
     });
+  },
+  methods: {
+    relativeDate: function (date) {
+      return moment(date).fromNow();
+    },
   },
 };
 </script>
